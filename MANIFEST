@@ -1,0 +1,10 @@
+Changes
+lib/MooseX/Types/DateTime.pm
+lib/MooseX/Types/DateTimeX.pm
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+t/01_basic.t
+t/02_datetimex.t
+META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE                                Public-key signature (added by MakeMaker)
