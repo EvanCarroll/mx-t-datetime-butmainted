@@ -1,4 +1,4 @@
-0.04
+0.04 -- *RELEASED AS FORK* ::ButMaintained
         - Updated to Module::Install ( Evan Carroll )
 				- removed MooseX::Types::DateTime ( Evan Caroll )
 

@@ -6,7 +6,7 @@ use warnings;
 use Test::More 'no_plan';
 use Test::Exception;
 
-use ok 'MooseX::Types::DateTime';
+use ok 'MooseX::Types::DateTime::ButMaintained';
 
 use Moose::Util::TypeConstraints;
 
@@ -135,7 +135,7 @@ isa_ok( find_type_constraint($_), "Moose::Meta::TypeConstraint" ) for qw(DateTim
         package Gondor;
 
         use Moose;
-        use MooseX::Types::DateTime qw(DateTime Duration);
+        use MooseX::Types::DateTime::ButMaintained qw(DateTime Duration);
 
         has 'date' => (is=>'rw', isa=>DateTime, coerce=>1);
         has 'duration' => (is=>'rw', isa=>Duration, coerce=>1);	

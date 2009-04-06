@@ -1,7 +1,7 @@
 use inc::Module::Install;
 
-name     'MooseX-Types-DateTime';
-all_from 'lib/MooseX/Types/DateTime.pm';
+name     'MooseX-Types-DateTime-ButMaintained';
+all_from 'lib/MooseX/Types/DateTime/ButMaintained.pm';
 author   'Evan Carroll <me@evancarroll.com>';
 license  'perl';
 
