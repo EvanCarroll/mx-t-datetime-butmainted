@@ -168,7 +168,7 @@ The C<Locale::Maketext/language_tag> attribute will be used with L<DateTime::Loc
 
 =item L<DateTime::TimeZone>
 
-A class type for L<DateTime::TimeZone>.
+A class type for L<DateTime::TimeZone>, this now as of 0.05 coerces from non-globally ambigious Olson abbreviations, using L<Olson::Abbreviations>. This won't work for abbreviations like "EST" which are only unambigious if you know the locale. It will coerce from abbreviations like "CEST" though.
 
 =over 4
 
