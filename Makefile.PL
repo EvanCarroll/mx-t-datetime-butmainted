@@ -15,9 +15,10 @@ requires 'DateTime::Locale'   => '0.4001';
 requires 'DateTime::TimeZone' => '0.7701';
 requires 'Olson::Abbreviations';
 
-test_requires 'Test::use::ok'    => '0.02';
 test_requires 'Test::Exception'  => '0.27';
 test_requires 'Test::More';
+
+repository 'git@github.com:EvanCarroll/mx-t-datetime-butmainted.git';
 
 auto_install;
 
