@@ -39,3 +39,5 @@
 \.t\.log$
 
 \.gitignore$
+
+INSTALL.SKIP
