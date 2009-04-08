@@ -13,6 +13,7 @@ requires 'namespace::clean'   => '0.08';
 requires 'DateTime'           => '0.4302';
 requires 'DateTime::Locale'   => '0.4001';
 requires 'DateTime::TimeZone' => '0.7701';
+requires 'Olson::Abbreviations';
 
 test_requires 'Test::use::ok'    => '0.02';
 test_requires 'Test::Exception'  => '0.27';
