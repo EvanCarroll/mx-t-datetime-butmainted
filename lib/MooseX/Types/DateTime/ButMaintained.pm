@@ -2,7 +2,7 @@ package MooseX::Types::DateTime::ButMaintained;
 use strict;
 use warnings;
 
-our $VERSION = "0.05";
+our $VERSION = "0.06";
 
 use DateTime ();
 use DateTime::Locale ();
@@ -101,6 +101,7 @@ Export Example:
 			, coerce => 1
 	);
 	Class->new( time_zone => "Africa/Timbuktu" );
+	Class->new( time_zone => "CEST" );
 
 Namespaced Example:
 
@@ -209,7 +210,7 @@ In Janurary 2009, I began a project to bring DateTime::Format::* stuff up to dat
 
 Unfortunately, this just added confusion. Now, as of the time of writing L<MooseX::Types::DateTimeX> is available as a package, and it is available as a module which will be installed by L<MooseX::Types::DateTime>. The benefit of removing the dependency on L<MooseX::Types::DateTime> was never realized and the patch that updates the dependencies, and the build system remains in rt still as of writing.
 
-This module is just the L<MooseX::Types::DateTime> without the requirement on L<DateTimeX::Easy> (which requires L<DateTime::Manip>). In the future this module will support Olson abbreviations.
+This module is just the L<MooseX::Types::DateTime> without the requirement on L<DateTimeX::Easy> (which requires L<DateTime::Manip>). As of 0.05 this module supports globally unique Olson abbreviations, and dies when they are not globally unique.
 
 =head1 COPYRIGHT
 
