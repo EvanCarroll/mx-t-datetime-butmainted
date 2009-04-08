@@ -50,7 +50,8 @@ our %coercions = (
 			if ( m,/, ) {
 				return DateTime::TimeZone->new( name => $_ );
 			}
-			# Abbreviation - assumed if we do have a '/' returns a DateTime::TimeZone::OffsetOnly
+			# Abbreviation - assumed if we do have a '/'
+			# returns a DateTime::TimeZone::OffsetOnly
 			else {
 				my $offset = Olson::Abbreviations->new({ tz_abbreviation => $_ })->get_offset;
 				return DateTime::TimeZone->new( name => $offset );
