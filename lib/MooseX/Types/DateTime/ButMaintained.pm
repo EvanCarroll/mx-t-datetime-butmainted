@@ -1,5 +1,4 @@
 package MooseX::Types::DateTime::ButMaintained;
-
 use strict;
 use warnings;
 
@@ -8,6 +7,7 @@ our $VERSION = "0.04";
 use DateTime ();
 use DateTime::Locale ();
 use DateTime::TimeZone ();
+use Olson::Abbreviations qw();
 
 use MooseX::Types::Moose qw/Num HashRef Str/;
 
@@ -25,41 +25,52 @@ subtype Duration, as 'DateTime::Duration';
 subtype TimeZone, as 'DateTime::TimeZone';
 subtype Locale,   as 'DateTime::Locale';
 
-subtype( Now,
-    as Str,
-    where { $_ eq 'now' },
-    Moose::Util::TypeConstraints::optimize_as {
-        no warnings 'uninitialized';
-        !ref($_[0]) and $_[0] eq 'now';
-    },
+subtype( Now, as Str, where { $_ eq 'now' },
+	Moose::Util::TypeConstraints::optimize_as {
+		no warnings 'uninitialized';
+		!ref($_[0]) and $_[0] eq 'now';
+	},
 );
 
 our %coercions = (
-    DateTime => [
-		from Num, via { 'DateTime'->from_epoch( epoch => $_ ) },
-		from HashRef, via { 'DateTime'->new( %$_ ) },
-		from Now, via { 'DateTime'->now },
-    ],
-    "DateTime::Duration" => [
-		from Num, via { DateTime::Duration->new( seconds => $_ ) },
-		from HashRef, via { DateTime::Duration->new( %$_ ) },
-    ],
-    "DateTime::TimeZone" => [
-		from Str, via { DateTime::TimeZone->new( name => $_ ) },
-    ],
-    "DateTime::Locale" => [
-        from Moose::Util::TypeConstraints::find_or_create_isa_type_constraint("Locale::Maketext"),
-        via { DateTime::Locale->load($_->language_tag) },
-        from Str, via { DateTime::Locale->load($_) },
-    ],
+	DateTime => [
+		from Num, via { 'DateTime'->from_epoch( epoch => $_ ) }
+		, from HashRef, via { 'DateTime'->new( %$_ ) }
+		, from Now, via { 'DateTime'->now }
+	]
+
+	, "DateTime::Duration" => [
+		from Num, via { DateTime::Duration->new( seconds => $_ ) }
+		, from HashRef, via { DateTime::Duration->new( %$_ ) }
+	]
+
+	, "DateTime::TimeZone" => [
+		from Str, via {
+			# No abbreviation - assumed if we don't have a '/'
+			if ( m,/, ) {
+				return DateTime::TimeZone->new( name => $_ );
+			}
+			# Abbreviation - assumed if we do have a '/' returns a DateTime::TimeZone::OffsetOnly
+			else {
+				my $offset = Olson::Abbreviations->new({ tz_abbreviation => $_ })->get_offset;
+				return DateTime::TimeZone->new( name => $offset );
+			}
+		}
+	]
+
+	, "DateTime::Locale" => [
+		from Moose::Util::TypeConstraints::find_or_create_isa_type_constraint("Locale::Maketext")
+			, via { DateTime::Locale->load($_->language_tag) }
+		, from Str, via { DateTime::Locale->load($_) }
+	]
 );
 
 for my $type ( "DateTime", DateTime ) {
-    coerce $type => @{ $coercions{DateTime} };
+	coerce $type => @{ $coercions{DateTime} };
 }
 
 for my $type ( "DateTime::Duration", Duration ) {
-    coerce $type => @{ $coercions{"DateTime::Duration"} };
+	coerce $type => @{ $coercions{"DateTime::Duration"} };
 }
 
 for my $type ( "DateTime::TimeZone", TimeZone ) {
@@ -70,7 +81,7 @@ for my $type ( "DateTime::Locale", Locale ) {
 	coerce $type => @{ $coercions{"DateTime::Locale"} };
 }
 
-__PACKAGE__
+1;
 
 __END__
 
@@ -93,11 +104,11 @@ Export Example:
 Namespaced Example:
 
 	use MooseX::Types::DateTime;
-  has time_zone => (
-      isa  => 'DateTime::TimeZone'
-      , is => "rw"
-      , coerce => 1
-  );
+	has time_zone => (
+		isa  => 'DateTime::TimeZone'
+		, is => "rw"
+		, coerce => 1
+	);
 	Class->new( time_zone => "Africa/Timbuktu" );
 
 =head1 CONSTRAINTS
