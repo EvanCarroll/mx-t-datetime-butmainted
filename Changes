@@ -1,3 +1,4 @@
+0.07 -- 2009-04-16 Fixed bug for timezone 'local', and 'floating' & added test
 0.06 -- Added Docs and changeslogs to clairify what 0.05 was. lawl.
 0.05 -- Added the ability to coerce from Olson Abbreviations using Olson::Abbreviation
 0.04 -- *RELEASED AS FORK* ::ButMaintained

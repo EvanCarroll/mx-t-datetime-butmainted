@@ -2,7 +2,7 @@ package MooseX::Types::DateTime::ButMaintained;
 use strict;
 use warnings;
 
-our $VERSION = "0.06";
+our $VERSION = "0.07";
 
 use DateTime ();
 use DateTime::Locale ();
@@ -47,7 +47,7 @@ our %coercions = (
 	, "DateTime::TimeZone" => [
 		from Str, via {
 			# No abbreviation - assumed if we don't have a '/'
-			if ( m,/, ) {
+			if ( m,/|floating|local, ) {
 				return DateTime::TimeZone->new( name => $_ );
 			}
 			# Abbreviation - assumed if we do have a '/'
