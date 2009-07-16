@@ -15,11 +15,20 @@ use Test::More tests => 3;
 
 my $o = Class->new;
 
-foreach my $tz ( qw/local floating/, 'America/Chicago' ) {
+foreach my $tz ( 'floating', 'America/Chicago' ) {
 	eval {
 		$o->tz( $tz );
 	};
-	ok( ! $@ );
+	ok( ! $@, "'$tz' timezone worked" );
+}
+
+
+## Not all systems can use local (has to successfuly detect)
+eval { DateTime::TimeZone->new( name => 'local' ) };
+SKIP: {
+	skip "DateTime::TimeZone's local doesn't work on your system", 1 if $@;
+	eval { $o->tz( 'local' ) };
+	ok( ! $@, "'local' timezone worked" );
 }
 
 1;
