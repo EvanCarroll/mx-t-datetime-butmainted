@@ -12,7 +12,9 @@ requires 'namespace::clean'   => '0.08';
 # Datetime stuff
 requires 'DateTime'           => '0.4302';
 requires 'DateTime::Locale'   => '0.4001';
-requires 'DateTime::TimeZone' => '0.7701';
+
+## DT:TZ broke 0.92 until .95, going to require latest at .96
+requires 'DateTime::TimeZone' => '0.96';
 requires 'Olson::Abbreviations';
 
 test_requires 'Test::Exception'  => '0.27';
