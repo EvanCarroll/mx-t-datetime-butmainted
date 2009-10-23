@@ -19,6 +19,7 @@ requires 'Olson::Abbreviations';
 
 test_requires 'Test::Exception'  => '0.27';
 test_requires 'Test::More';
+test_requires 'Test::use::ok'    => '0.02';
 
 repository 'git@github.com:EvanCarroll/mx-t-datetime-butmainted.git';
 
