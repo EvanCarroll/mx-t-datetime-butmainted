@@ -1,3 +1,4 @@
+0.10 -- fixed bug with makefile brought up in rt
 0.09 -- fixed allowance in Makefile.pl that permitted broken versions of upstream that were
         released subsequent to 0.08, chmod -x Makefile.PL
 0.08 -- 2009-04-16 the previous test would fail if DT:TZ's couldn't automagic detect
