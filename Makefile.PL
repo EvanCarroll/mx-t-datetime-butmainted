@@ -22,6 +22,7 @@ test_requires 'Test::More';
 test_requires 'Test::use::ok'    => '0.02';
 
 repository 'git@github.com:EvanCarroll/mx-t-datetime-butmainted.git';
+homepage   'http://www.evancarroll.com';
 
 auto_install;
 
