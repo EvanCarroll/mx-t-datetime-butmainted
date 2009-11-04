@@ -7,7 +7,7 @@ license  'perl';
 
 requires 'Moose'              => '0.41'; # class_type
 requires 'MooseX::Types'      => '0.04';
-requires 'namespace::clean'   => '0.08';
+requires 'namespace::autoclean';
 
 # Datetime stuff
 requires 'DateTime'           => '0.4302';
@@ -21,7 +21,7 @@ test_requires 'Test::Exception'  => '0.27';
 test_requires 'Test::More';
 test_requires 'Test::use::ok'    => '0.02';
 
-repository 'git@github.com:EvanCarroll/mx-t-datetime-butmainted.git';
+repository 'git://github.com/EvanCarroll/mx-t-datetime-butmainted.git';
 homepage   'http://www.evancarroll.com';
 
 auto_install;

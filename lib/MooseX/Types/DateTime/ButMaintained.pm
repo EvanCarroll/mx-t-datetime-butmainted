@@ -2,7 +2,7 @@ package MooseX::Types::DateTime::ButMaintained;
 use strict;
 use warnings;
 
-our $VERSION = "0.11";
+our $VERSION = "0.12";
 
 use DateTime ();
 use DateTime::Locale ();
@@ -11,7 +11,7 @@ use Olson::Abbreviations qw();
 
 use MooseX::Types::Moose qw/Num HashRef Str/;
 
-use namespace::clean;
+use namespace::autoclean;
 
 use MooseX::Types -declare => [qw( DateTime Duration TimeZone Locale Now )];
 
@@ -94,7 +94,7 @@ MooseX::Types::DateTime::ButMaintained - L<DateTime> related constraints and coe
 
 Export Example:
 
-	use MooseX::Types::DateTime qw(TimeZone);
+	use MooseX::Types::DateTime::ButMaintained qw(TimeZone);
 	has time_zone => (
 			isa  => TimeZone
 			, is => "rw"
@@ -105,7 +105,7 @@ Export Example:
 
 Namespaced Example:
 
-	use MooseX::Types::DateTime;
+	use MooseX::Types::DateTime::ButMaintained;
 	has time_zone => (
 		isa  => 'DateTime::TimeZone'
 		, is => "rw"
