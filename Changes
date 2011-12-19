@@ -1,3 +1,4 @@
+0.14 -- Fixed rt #73332 about build systems and MooseX::Types version number
 0.13 -- Fixed rt #72473 and added version requirement for Moose
 0.12 -- Updated to use namespace::autoclean, fixed git repo link to be public repo, 
 0.11 -- updated yaml, damn old version of M::I too

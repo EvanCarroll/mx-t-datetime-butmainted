@@ -2,7 +2,7 @@ package MooseX::Types::DateTime::ButMaintained;
 use strict;
 use warnings;
 
-our $VERSION = "0.13";
+our $VERSION = "0.14";
 
 use Moose 0.41 ();
 use DateTime ();
