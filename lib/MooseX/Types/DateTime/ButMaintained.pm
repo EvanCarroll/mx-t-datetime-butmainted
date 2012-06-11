@@ -2,7 +2,7 @@ package MooseX::Types::DateTime::ButMaintained;
 use strict;
 use warnings;
 
-our $VERSION = "0.14";
+our $VERSION = "0.15";
 
 use Moose 0.41 ();
 use DateTime ();
@@ -12,9 +12,9 @@ use Olson::Abbreviations qw();
 
 use MooseX::Types::Moose 0.30 qw/Num HashRef Str/;
 
-use namespace::autoclean;
-
 use MooseX::Types 0.30 -declare => [qw( DateTime Duration TimeZone Locale Now )];
+
+use namespace::autoclean;
 
 class_type "DateTime";
 class_type "DateTime::Duration";
