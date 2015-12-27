@@ -19,7 +19,7 @@ use namespace::autoclean;
 class_type "DateTime";
 class_type "DateTime::Duration";
 class_type "DateTime::TimeZone";
-class_type "DateTime::Locale::root" => { name => "DateTime::Locale" };
+class_type "DateTime::Locale::FromData" => { name => "DateTime::Locale" };
 
 subtype DateTime, as 'DateTime';
 subtype Duration, as 'DateTime::Duration';
