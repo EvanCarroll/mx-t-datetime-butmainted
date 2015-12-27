@@ -103,7 +103,9 @@ isa_ok( find_type_constraint($_), "Moose::Meta::TypeConstraint" ) for qw(DateTim
 
     my $loc = Gorch->new( loc => "he_IL" )->loc;
 
-    isa_ok( $loc, "DateTime::Locale::he", "coerced from string" );
+    isa_ok( $loc, "DateTime::Locale::FromData", "coerced from string" );
+
+    is( $loc->id, 'he-IL', 'id coerced from string' );
 
     dies_ok { Gorch->new( loc => "not_a_place_or_a_locale" ) } "bad locale name";
 
@@ -126,7 +128,12 @@ isa_ok( find_type_constraint($_), "Moose::Meta::TypeConstraint" ) for qw(DateTim
 
         isa_ok( $handle, "Some::L10N", "maketext handle" );
 
-        isa_ok( Gorch->new( loc => $handle )->loc, "DateTime::Locale::ja", "coerced from maketext" );;
+        my $loc = Gorch->new( loc => $handle )->loc;
+
+        isa_ok( $loc, "DateTime::Locale::FromData", "coerced from maketext" );
+    
+	is( $loc->id, 'ja', 'id coerced from maketext' );
+
     }
 }
 
